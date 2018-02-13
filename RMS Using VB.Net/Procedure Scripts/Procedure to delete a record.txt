@@ -1,0 +1,11 @@
+create proc spDeleteResource
+@Id int,
+@Message varchar(50) out
+as
+begin
+	delete from resources where Id = @Id
+	if @@ROWCOUNT > 0 
+		set @Message = 'Record Deleted Successfully...'
+	else
+		set @Message = 'Sorry!!! Record Couldn''t Be Deleted...'
+end

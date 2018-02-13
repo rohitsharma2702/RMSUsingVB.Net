@@ -1,0 +1,19 @@
+
+CREATE proc spLogin
+@Username varchar(50),
+@Password varchar(50),
+@Message varchar(50) out
+as
+begin
+	declare @count int
+	select @count = count(*)
+	from resources
+	where Username = @Username
+	and Password = @Password		
+	if @count > 0 
+		set @Message = 'Login Successful...'
+	else
+		set @Message = 'Invalid Credentials...'
+	print 'Users Count :  ' + cast(@count as varchar)
+	select @count as [Users Count]
+end 

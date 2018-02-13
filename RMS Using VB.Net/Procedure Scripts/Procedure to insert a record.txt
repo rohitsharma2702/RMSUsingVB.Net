@@ -1,0 +1,22 @@
+
+
+create proc spInsertResource
+@FirstName varchar(20),
+@LastName varchar(20),
+@ContactNumber varchar(10),
+@DateOfBirth date,
+@Email varchar(30),
+@Gender varchar(6),
+@AadharId varchar(12),
+@Address varchar(100),
+@Username varchar(50),
+@Password varchar(50),
+@Message varchar(50) out
+as
+begin
+	insert into resources values(@FirstName,@LastName,@ContactNumber,@DateOfBirth,@Email,@Gender,@AadharId,@Address,@Username,@Password)
+	if @@ROWCOUNT > 0 
+		set @Message = 'Record Inserted Successfully...'
+	else
+		set @Message = 'Sorry!!! Record Couldn''t Be Inserted...'
+end

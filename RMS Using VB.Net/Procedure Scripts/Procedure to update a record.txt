@@ -1,0 +1,32 @@
+create proc spUpdateResource
+@Id int,
+@FirstName varchar(20),
+@LastName varchar(20),
+@ContactNumber varchar(10),
+@DateOfBirth date,
+@Email varchar(30),
+@Gender varchar(6),
+@AadharId varchar(12),
+@Address varchar(100),
+@Username varchar(50),
+@Password varchar(50),
+@Message varchar(50) out
+as
+begin
+	update resources 
+	set FirstName = @FirstName,
+	LastName = @LastName,
+	ContactNumber = @ContactNumber,
+	DateOfBirth = @DateOfBirth,
+	Email = @Email,
+	Gender = @Gender,
+	AadharId = @AadharId,
+	Address = @Address,
+	Username = @Username,
+	Password = @Password
+	where Id = @Id
+	if @@ROWCOUNT > 0 
+		set @Message = 'Record Updated Successfully...'
+	else
+		set @Message = 'Sorry!!! Record Couldn''t Be Updated...'
+end
